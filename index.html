@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BIS Profit Mini - Calculadora de Rentabilidad</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <main class="calculator-container">
+        <header>
+            <h1>BIS <span>Profit Mini</span></h1>
+            <p class="subtitle">MVP: 1 pantalla, carga manual, sin conexiones</p>
+        </header>
+
+        <form id="profit-form" class="calculator-grid">
+            <!-- SECCIÓN 1: DATOS DE LA SIMULACIÓN -->
+            <section class="card inputs-card">
+                <h2>Datos de la simulación</h2>
+                
+                <div class="input-group">
+                    <label for="precio">P. Precio por pedido (USD)</label>
+                    <input type="number" id="precio" step="0.01" min="0.01" value="25.00" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="ventasPagadas">N. Ventas pagadas</label>
+                    <input type="number" id="ventasPagadas" step="1" min="0" value="20" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="devoluciones">D. Devoluciones</label>
+                    <input type="number" id="devoluciones" step="1" min="0" value="2" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="publicidadTotal">A. Publicidad total (USD)</label>
+                    <input type="number" id="publicidadTotal" step="0.01" min="0" value="120.00" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="produccion">Fp. Producción / diseño (USD)</label>
+                    <input type="number" id="produccion" step="0.01" min="0" value="50.00" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="abonoTienda">Fs. Abono Tienda asignado (USD)</label>
+                    <input type="number" id="abonoTienda" step="0.01" min="0" value="10.00" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="hosting">Fh. Hosting / dominio (USD)</label>
+                    <input type="number" id="hosting" step="0.01" min="0" value="3.00" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="herramientas">Ft. Herramientas (USD)</label>
+                    <input type="number" id="herramientas" step="0.01" min="0" value="7.00" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="otrosFijos">Fo. Otros costos fijos (USD)</label>
+                    <input type="number" id="otrosFijos" step="0.01" min="0" value="2.00" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="comisionTienda">f. Comisión Tienda (%)</label>
+                    <input type="number" id="comisionTienda" step="0.01" min="0" max="100" value="4" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="comisionPasarela">g. Comisión pasarela (%)</label>
+                    <input type="number" id="comisionPasarela" step="0.01" min="0" max="100" value="3" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="impuestosVenta">t. Impuestos sobre venta (%)</label>
+                    <input type="number" id="impuestosVenta" step="0.01" min="0" max="100" value="0" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="otrosVariables">h. Otros variables (%)</label>
+                    <input type="number" id="otrosVariables" step="0.01" min="0" max="100" value="2" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="otrosPorVenta">c. Otros por venta válida (USD)</label>
+                    <input type="number" id="otrosPorVenta" step="0.01" min="0" value="1.00" required>
+                </div>
+
+                <div class="actions-group">
+                    <button type="submit" id="btn-calcular" class="btn primary">Calcular</button>
+                    <button type="button" id="btn-limpiar" class="btn secondary">Limpiar</button>
+                </div>
+            </section>
+
+            <!-- SECCIÓN 2: RESULTADOS -->
+            <section class="card results-card">
+                <h2>Resultados</h2>
+                <div id="status-banner" class="status-badge pending">Pendiente de recalcular</div>
+
+                <div class="metrics-grid">
+                    <div class="metric-item">
+                        <span class="label">Ventas válidas (V)</span>
+                        <span id="res-ventas-validas" class="value">-</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="label">Ingresos retenidos (G)</span>
+                        <span id="res-ingresos" class="value">-</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="label">Costos fijos (F)</span>
+                        <span id="res-costos-fijos" class="value">-</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="label">Costos variables (CV)</span>
+                        <span id="res-costos-variables" class="value">-</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="label">Inversión total (I)</span>
+                        <span id="res-inversion" class="value">-</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="label">Ganancia (U)</span>
+                        <span id="res-ganancia" class="value">-</span>
+                    </div>
+                    <div class="metric-item highlight">
+                        <span class="label">ROI estimado (%)</span>
+                        <span id="res-roi" class="value">-</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="label">Margen neto</span>
+                        <span id="res-margen" class="value">-</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="label">ROAS ajustado</span>
+                        <span id="res-roas" class="value">-</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="label">CPA efectivo</span>
+                        <span id="res-cpa" class="value">-</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="label">Amax (Pauta máx. ROI 40%)</span>
+                        <span id="res-amax" class="value">-</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="label">CPA máximo 40%</span>
+                        <span id="res-cpamax" class="value">-</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="label">Equilibrio (BE) / Ventas obj. (VT)</span>
+                        <span id="res-umbrales" class="value">-</span>
+                    </div>
+                </div>
+
+                <footer class="disclaimer">
+                    <p>Estimación basada en costos cargados. Revisá costos no recuperables, impuestos y cambio de moneda antes de invertir.</p>
+                </footer>
+            </section>
+        </form>
+    </main>
+
+    <script type="module" src="app.js"></script>
+</body>
+</html>
