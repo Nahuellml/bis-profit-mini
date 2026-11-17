@@ -36,7 +36,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   //Botón limpiar
   btnLimpiar.addEventListener('click', () => {
-    form.reset();
+    form.querySelectorAll('input').forEach(input => {
+      input.value = '';
+    });
     limpiarResultados();
   });
 
