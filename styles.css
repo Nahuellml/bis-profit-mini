@@ -1,0 +1,291 @@
+:root {
+    --bg-page: #f1f5f9;
+    --sidebar-bg: #0f1f38;
+    --card-bg: #ffffff;
+    --border-card: #e2e8f0;
+    --text-dark: #1e293b;
+    --text-muted: #64748b;
+    --primary-teal: #0d9488;
+    --primary-teal-hover: #0f766e;
+    --success-bg: #ccfbf1;
+    --success-text: #0f766e;
+    --danger-bg: #fee2e2;
+    --danger-text: #991b1b;
+    --pending-bg: #f1f5f9;
+    --pending-text: #475569;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: var(--bg-page);
+    color: var(--text-dark);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem;
+}
+
+.app-container {
+    display: flex;
+    width: 100%;
+    max-width: 1280px;
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    border: 1px solid var(--border-card);
+}
+
+/* Sidebar Izquierda */
+.sidebar {
+    width: 220px;
+    background-color: var(--sidebar-bg);
+    color: white;
+    padding: 2rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+.brand {
+    display: flex;
+    flex-direction: column;
+}
+
+.brand-title {
+    font-size: 1.8rem;
+    font-weight: 800;
+    letter-spacing: -0.05em;
+    line-height: 1;
+}
+
+.brand-subtitle {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #94a3b8;
+    margin-top: 0.25rem;
+}
+
+.sidebar-nav .nav-item {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background-color: var(--primary-teal);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    text-align: left;
+    font-size: 0.95rem;
+    cursor: default;
+}
+
+/* Contenido Principal */
+.main-content {
+    flex: 1;
+    padding: 2rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    background-color: #ffffff;
+}
+
+.top-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.top-header h1 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-dark);
+}
+
+.subtitle {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-top: 0.2rem;
+}
+
+.roi-badge-top {
+    background-color: #f1f5f9;
+    border: 1px solid var(--border-card);
+    padding: 0.4rem 0.9rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+/* Grid de trabajo (Simulación vs Resultados) */
+.workspace-grid {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 1.5rem;
+}
+
+@media (max-width: 1024px) {
+    .workspace-grid {
+        grid-template-columns: 1fr;
+    }
+    .app-container {
+        flex-direction: column;
+    }
+    .sidebar {
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 1.5rem;
+    }
+}
+
+.card {
+    background-color: #ffffff;
+    border: 1px solid var(--border-card);
+    border-radius: 12px;
+    padding: 1.5rem;
+}
+
+.card h2 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+}
+
+/* Inputs en 2 columnas */
+.inputs-grid-2col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem 1rem;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.input-group label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+.input-group input {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--border-card);
+    border-radius: 6px;
+    font-size: 0.9rem;
+    color: var(--text-dark);
+    background-color: #fafafa;
+    transition: border-color 0.2s;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: var(--primary-teal);
+    background-color: #ffffff;
+}
+
+/* Botones de acción */
+.actions-group {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.25rem;
+}
+
+.btn {
+    flex: 1;
+    padding: 0.65rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn.primary {
+    background-color: var(--primary-teal);
+    color: white;
+    border: none;
+}
+
+.btn.primary:hover {
+    background-color: var(--primary-teal-hover);
+}
+
+.btn.secondary {
+    background-color: #ffffff;
+    color: var(--text-dark);
+    border: 1px solid var(--border-card);
+}
+
+.btn.secondary:hover {
+    background-color: #f8fafc;
+}
+
+/* Lista de Resultados */
+.metrics-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1.25rem;
+}
+
+.metric-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.4rem 0;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.metric-row .label {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.metric-row .value {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text-dark);
+}
+
+/* Badge de Estado / Semáforo */
+.status-badge {
+    text-align: center;
+    padding: 0.75rem;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+.status-badge.success {
+    background-color: var(--success-bg);
+    color: var(--success-text);
+}
+
+.status-badge.danger {
+    background-color: var(--danger-bg);
+    color: var(--danger-text);
+}
+
+.status-badge.pending {
+    background-color: var(--pending-bg);
+    color: var(--pending-text);
+}
+
+.footer-note {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
