@@ -30,8 +30,10 @@ npx serve .
 
 # Opción 3: Con Python 3
 python3 -m http.server 8000
+```
 
-Luego abrir http://localhost:3000 (o 8000) en el navegador.
+Luego abrir `http://localhost:3000` (o 8000) en el navegador.
 
-Aviso Legal y Limitaciones
-Estimación basada en costos cargados. Revisá costos no recuperables, impuestos y cambio de moneda antes de invertir. Las cifras de prueba no predicen ventas.
+## Aviso Legal y Limitaciones
+
+> Estimación basada en costos cargados. Revisá costos no recuperables, impuestos y cambio de moneda antes de invertir. Las cifras de prueba no predicen ventas.
